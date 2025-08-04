@@ -1,31 +1,4 @@
 
-// const mongoose = require('mongoose');
-
-// const listingSchema = new mongoose.Schema({
-//   title: String,
-//   price: Number,
-//   location: String,
-//   description: String,
-//   country: String,
-//   image: {
-//     type: {
-//       filename: {
-//         type: String,
-//         default: 'defaultimage'
-//       },
-//       url: {
-//         type: String,
-//         default: 'https://unsplash.com/photos/camping-chairs-overlook-a-stunning-mountain-vista-m8oujgLaeKM'
-//       }
-//     },
-//     default: () => ({}) 
-//   }
-// });
-
-// const Listing = mongoose.model('Listing', listingSchema);
-// module.exports = Listing;
-
-
 // below one is shradha maam code
 
 const mongoose = require("mongoose");
@@ -48,6 +21,11 @@ const listingSchema = new Schema({
       default: "https://images.unsplash.com/photo-1625505826533-5c80aca7d157?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGdvYXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
     }
   },
+
+  // image: {
+  //   url: String,
+  //   filename: String,
+  // },
 
   price: Number,
   location: String,

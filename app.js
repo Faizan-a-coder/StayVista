@@ -16,7 +16,6 @@ const passport = require("passport");
 const LocalStrategy= require("passport-local");
 const User = require("./models/user.js");
 
-
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
@@ -55,9 +54,9 @@ const sessionOptions= {
     },
 };
 
-app.get("/", (req,res) =>{
-    res.send("i am ayan");
-});
+// app.get("/", (req,res) =>{
+//     res.send("i am ayan");
+// });
 
 app.use(session(sessionOptions));
 app.use(flash()); 

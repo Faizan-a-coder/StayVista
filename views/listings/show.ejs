@@ -32,8 +32,9 @@
 
     
     <div class="col-8 offset-3 mb-3">
-        <hr/>
+        
         <% if(currUser){ %>
+            <hr/>
         <h4>Leave a Review</h4>
         <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
 
@@ -59,13 +60,6 @@
         </div>
 
 
-
-
-
-
-
-
-
             <div class="mb-3 mt-3">
                 <label for="comment" class="form-label">Comments</label>
                 <textarea name="review[comment]" id="comment" cols="30" rows="5"  class="form-control" required></textarea>
@@ -75,10 +69,9 @@
         </form>
         <% } %>
 
-        <p><b>All Reviews</b></p>
-
+     <%  if(listing.reviews.length > 0){ %>
         <div class="row">
-
+             <p><b>All Reviews</b></p>
         <% for(review of listing.reviews) { %>
           <div class="card col-5 ms-3 mb-3">
             <div class="card-body">
@@ -92,9 +85,31 @@
           </div>
         <% } %>
         </div> 
+     <% } %>
+    </div>
+
+     <div class="col-8 offset-3 mb-3">
+        <h3>Where you'll be</h3>
+        <div id="map"></div>
     </div>
 </div>
 
+  <script>
+          const map = new maplibregl.Map({
+        container: 'map', // container id
+        style:
+            'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+        center: [77.2090, 28.6139], // starting position
+        zoom: 9, // starting zoom
+        rollEnabled: true // Enable mouse control of camera roll angle with `Ctrl` + right-click and drag
+    });
 
-
+    // Add zoom and rotation controls to the map.
+    map.addControl(new maplibregl.NavigationControl({
+        visualizePitch: true,
+        visualizeRoll: true,
+        showZoom: true,
+        showCompass: true
+    }));
+    </script>
 

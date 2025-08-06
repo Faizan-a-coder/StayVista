@@ -16,7 +16,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy= require("passport-local");
 const User = require("./models/user.js");
-const Listing = require("./models/listing.js");
+const Listing = require("./models/listings.js");
+
 
 
 const listingRouter = require("./routes/listing.js");
@@ -98,9 +99,8 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
 
-app.get("/", async (req, res) => {
-    const listings = await Listing.find({});
-    res.render("listings/index", { listings });
+app.get("/", (req, res) => {
+  res.redirect("/listings");
 });
 
 

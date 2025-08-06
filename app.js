@@ -16,6 +16,8 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy= require("passport-local");
 const User = require("./models/user.js");
+const Listing = require("./models/listing.js");
+
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -68,9 +70,6 @@ const sessionOptions= {
     },
 };
 
-// app.get("/", (req,res) =>{
-//     res.send("i am ayan");
-// });
 
 
 app.use(session(sessionOptions));
@@ -92,22 +91,17 @@ app.use((req,res,next) =>{
 
 
 
-// app.use(passport.initialize());
-// app.use(passport.session());
-//fakedemo  user
-// app.get("/demouser",async (req,res) =>{
-//     let fakeUser= new User({
-//         email: "ayan@123",
-//         username: "ayankhan",
-//     });
-//     let newUser= await User.register(fakeUser, "helloworld");
-//     res.send(newUser);
-// });
 
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
+
+
+app.get("/", async (req, res) => {
+    const listings = await Listing.find({});
+    res.render("listings/index", { listings });
+});
 
 
 app.use((err,req,res,next) =>{
